@@ -1,0 +1,140 @@
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+/* header Start */
+header{
+    text-align: center;
+}
+.logoheader{
+  display: flex;
+  justify-content: space-around;
+}
+.logoheader p{
+  line-height: 1.2rem;
+}
+.logo{
+    width: 500px;
+    mix-blend-mode: darken;
+}
+.title{
+    text-align: center;
+    font-size: xx-large;
+    margin: 10px auto;
+}
+header p{
+    font-size: larger;
+    line-height: 0.8rem;
+    text-align: left;
+    margin-left: 20px;
+}
+.details{
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+}
+.float-right{
+    margin-left: 60px;
+}
+/* Header Ends */
+
+/* Main Starts */
+main{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+.tc{
+    text-align: center;
+}
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 0.1rem;
+  }
+  
+  .table th,
+  .table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #eceeef;
+  }
+  
+  .table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #eceeef;
+  }
+  
+  .table tbody + tbody {
+    border-top: 2px solid #eceeef;
+  }
+  
+  .table .table {
+    background-color: #fff;
+  }
+  
+  .table-sm th,
+  .table-sm td {
+    padding: 0.3rem;
+  }
+  
+  .table-bordered {
+    border: 1px solid #eceeef;
+  }
+  
+  .table-bordered th,
+  .table-bordered td {
+    border: 1px solid #eceeef;
+  }
+  
+  .table-bordered thead th,
+  .table-bordered thead td {
+    border-bottom-width: 2px;
+  }
+
+  .thead-default th {
+    color: #464a4c;
+    background-color: #eceeef;
+  }
+
+  .table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+  }
+  
+  .table-responsive.table-bordered {
+    border: 0;
+  }
+
+  .stats{
+      margin: 10px 01px;
+      text-align: center;
+      line-height: 35px;
+  }
+
+  /* Footer Starts */
+  footer{
+      display: flex;
+      flex-direction: row;
+      padding-top: 1px;
+      margin-top: 9px;
+      line-height: 25px;
+  }
+  .comment{
+      margin-top: 0;
+      flex-wrap: nowrap;
+  }
+
+  .text-center{
+    text-align: center;
+  }
+
+  .text-left{
+    text-align: left;
+  }
+
+  .stat{
+    display: inline;
+    margin-right: 40px;
+  }
