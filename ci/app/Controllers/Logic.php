@@ -431,6 +431,36 @@ class Logic extends BaseController
 		echo view('rs', $data);
 	}
 
+	public function arclassreportsheet()
+	{
+		$variables = new \App\Models\Variables();
+		$Broadsheet = new \App\Models\Broadsheet();
+		$students = new \App\Models\Students();
+		$Indiv = new \App\Models\Indiv();
+		$clss = $this->request->getGet('clss');
+		
+		$t = $variables->where('name','term')->first()['value'];
+		$s = $variables->where('name','session')->first()['value'];
+		$st = $s.$t;
+
+		$classes = explode(',', $variables->where('name', 'classes')->find()[0]['value']);
+		$noInClass = $variables->where('name', 'nic_'.$clss)->find()[0]['value'];
+		$schOpened = $variables->where('name', 'schoolOpened')->find()[0]['value'];
+		$schResume = $variables->where('name', 'schoolResume')->find()[0]['value'];
+		$schFees = $variables->where('name', 'schoolFees')->find()[0]['value'];
+
+			$stud = $Broadsheet->join('indiv_students', 'indiv_students.students_id = broadsheet.students_id')->where('broadsheet.class',$clss)->where('indiv_students.class',$clss)->where('broadsheet.sessionterm',$st)->where('indiv_students.session',$s)->where('indiv_students.term',$t)->find();
+
+		$data = [
+			'studs'=>$stud,
+			'vars'=>['nic'=>$noInClass,'schOpened'=>$schOpened,'schResume'=>$schResume,'schFees'=>$schFees]
+		];
+
+
+		echo view('logics');
+		echo view('arrs', $data);
+	}
+
 
     public function ccreportsheet()
     {

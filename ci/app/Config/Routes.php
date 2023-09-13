@@ -64,6 +64,7 @@ $routes->get('/reportsheet', 'Logic::reportsheet');
 $routes->get('/creportsheet', 'Logic::creportsheet');
 $routes->get('/ccreportsheet', 'Logic::ccreportsheet');
 $routes->get('/classreportsheet', 'Logic::classreportsheet');
+$routes->get('/arclassreportsheet', 'Logic::arclassreportsheet');
 
 $routes->get('/newintake', 'Live::newintake');
 $routes->post('/newintake', 'Live::postNewintake');
