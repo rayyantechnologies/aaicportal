@@ -14,6 +14,122 @@ class Live extends BaseController
         $Indiv = new \App\Models\Indiv();
         $res = $students->where('adm', $adm)->where('phone',$phone)->find();
         $rp = $variables->where('name','ReportSheet')->first()['value'];
+        $t = $variables->where('name','term')->first()['value'];
+        $s = $variables->where('name','session')->first()['value'];
+        $pr = $variables->where('name','ProgressReport')->first()['value'];
+
+        if($res){
+            $adm = $res[0]['adm'];
+            if($pr){
+                $clss = $res[0]['class'];
+                $t = $variables->where('name','term')->first()['value'];
+                $s = $variables->where('name','session')->first()['value'];
+                $st = $s.$t;
+
+                $classes = explode(',', $variables->where('name', 'classes')->find()[0]['value']);
+                $noInClass = $variables->where('name', 'nic_'.$clss)->find()[0]['value'];
+                $schOpened = $variables->where('name', 'schoolOpened')->find()[0]['value'];
+                $schResume = $variables->where('name', 'schoolResume')->find()[0]['value'];
+                $schFees = $variables->where('name', 'schoolFees')->find()[0]['value'];
+
+                $stud = $Broadsheet->where('students_id', $adm)->where('sessionterm',$st)->find();
+
+                $data = [
+                    'studs'=>$stud,
+                    'vars'=>['nic'=>$noInClass,'schOpened'=>$schOpened,'schResume'=>$schResume,'schFees'=>$schFees]
+                ];
+
+
+                echo view('logics');
+                echo view('rsmin', $data);
+            }else{
+                
+            if($t == 3){
+                // $clss = $this->request->getGet('clss');
+                
+                $st = $s.$t;
+                // $where = "broadsheet.sessionterm='".$s."1' AND broadsheet.sessionterm='".$s."2' AND broadsheet.sessionterm='".$s."3'";
+                // $where1 = "broadsheet.class='".$clss."' AND indiv_students.class = '".$clss."'";
+                // $where2 = "broadsheet.class='".$clss."' AND indiv_students.class = '".$clss."' AND (broadsheet.sessionterm='22231' OR broadsheet.sessionterm='22232' OR broadsheet.sessionterm='22233')";
+                $where3 = "broadsheet.students_id='".$adm."' AND (broadsheet.sessionterm='".$s."1' OR broadsheet.sessionterm='".$s."2' OR broadsheet.sessionterm='".$s."3')";
+                // ->where('indiv_students.class',$clss)->where($where)->where('indiv_students.session',$s)->where('indiv_students.term',$t)
+        
+                // $classes = explode(',', $variables->where('name', 'classes')->find()[0]['value']);
+                $noInClass = $variables->where('name', 'nic_'.$res[0]['class'])->find()[0]['value'];
+                $schOpened = $variables->where('name', 'schoolOpened')->find()[0]['value'];
+                $schResume = $variables->where('name', 'schoolResume')->find()[0]['value'];
+                $schFees = $variables->where('name', 'schoolFees')->find()[0]['value'];
+        
+                $stuu = $Broadsheet->where($where3)->find();
+                $vstuu = $Indiv->where('students_id',$adm)->where('session',$s)->where('term',$t)->find();
+                
+                // dd($stuu);
+        
+                $stt = array();
+                $tstt = array();
+                foreach ($vstuu as $key => $vsuu) {
+                        $stt['comment'] = $vsuu;
+                    foreach ($stuu as $key => $suu) {
+                        if(($vsuu['students_id'] == $suu['students_id']) && ($suu['sessionterm'] == $s.'1')){
+                            $stt[0] = $suu;
+                        }elseif(($vsuu['students_id'] == $suu['students_id']) && ($suu['sessionterm'] == $s.'2')){
+                            $stt[1] = $suu;
+                        }elseif(($vsuu['students_id'] == $suu['students_id']) && ($suu['sessionterm'] == $s.'3')){
+                            $stt[2] = $suu;
+                        }
+                    }
+                    $tstt[$vsuu['students_id']]= $stt;
+               }
+        
+                $data = [
+                    'studs'=>$tstt,
+                    'vars'=>['nic'=>$noInClass,'schOpened'=>$schOpened,'schResume'=>$schResume,'schFees'=>$schFees, 'ReportSheet'=>$rp]
+                ];
+        
+        
+                echo view('logics');
+                echo view('rscumm', $data);
+
+            }else{
+                $clss = $res[0]['class'];
+                $t = $variables->where('name','term')->first()['value'];
+                $s = $variables->where('name','session')->first()['value'];
+                $st = $s.$t;
+
+                $classes = explode(',', $variables->where('name', 'classes')->find()[0]['value']);
+                $noInClass = $variables->where('name', 'nic_'.$clss)->find()[0]['value'];
+                $schOpened = $variables->where('name', 'schoolOpened')->find()[0]['value'];
+                $schResume = $variables->where('name', 'schoolResume')->find()[0]['value'];
+                $schFees = $variables->where('name', 'schoolFees')->find()[0]['value'];
+
+                    $stud = $Broadsheet->join('indiv_students', 'indiv_students.students_id = broadsheet.students_id')->where('broadsheet.students_id',$adm)->where('indiv_students.students_id',$adm)->where('broadsheet.sessionterm',$st)->where('indiv_students.session',$s)->where('indiv_students.term',$t)->find();
+
+                $data = [
+                    'studs'=>$stud,
+                    'vars'=>['nic'=>$noInClass,'schOpened'=>$schOpened,'schResume'=>$schResume,'schFees'=>$schFees,'ReportSheet'=>$rp]
+                ];
+
+
+                echo view('logics');
+                echo view('rs', $data);
+            }
+            
+            }
+        }else{
+            $this->msg('Incorrect Details Supplied');
+        }
+    }
+    
+    public function progressreportsheet()
+    {
+        $adm = $this->request->getGet('adm');
+        $phone = $this->request->getGet('phone');
+        $variables = new \App\Models\Variables();
+        $Broadsheet = new \App\Models\Broadsheet();
+        $students = new \App\Models\Students();
+        $Indiv = new \App\Models\Indiv();
+        $res = $students->where('adm', $adm)->where('phone',$phone)->find();
+        $rp = $variables->where('name','ReportSheet')->first()['value'];
 
         if($res){
             $adm = $res[0]['adm'];
@@ -28,13 +144,12 @@ class Live extends BaseController
                 $schOpened = $variables->where('name', 'schoolOpened')->find()[0]['value'];
                 $schResume = $variables->where('name', 'schoolResume')->find()[0]['value'];
                 $schFees = $variables->where('name', 'schoolFees')->find()[0]['value'];
-                $tforReport = $variables->where('name', 'ReportSheet')->find()[0]['value'];
 
                 $stud = $Broadsheet->where('students_id', $adm)->where('sessionterm',$st)->find();
 
                 $data = [
                     'studs'=>$stud,
-                    'vars'=>['nic'=>$noInClass,'schOpened'=>$schOpened,'schResume'=>$schResume,'schFees'=>$schFees, 'ReportSheet'=>$tforReport]
+                    'vars'=>['nic'=>$noInClass,'schOpened'=>$schOpened,'schResume'=>$schResume,'schFees'=>$schFees]
                 ];
 
 
@@ -67,7 +182,7 @@ class Live extends BaseController
             $this->msg('Incorrect Details Supplied');
         }
     }
-
+    
     public function newintake()
     {
         $pin = $this->request->getGet('pin');
