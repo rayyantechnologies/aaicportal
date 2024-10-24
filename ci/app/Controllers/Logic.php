@@ -524,7 +524,7 @@ class Logic extends BaseController
         $s = $variables->where('name','session')->first()['value'];
         $st = $s.$t;
 
-        $stud = $students->where(['class'=>'JS1','class'=>'JS2','class'=>'JS3'])->find();
+        $stud = $students->where('class','JS1')->orWhere('class','JS2')->orWhere('class','JS3')->find();
 
         $data = [
             'studs'=>$stud,
