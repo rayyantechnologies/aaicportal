@@ -524,7 +524,7 @@ class Logic extends BaseController
         $s = $variables->where('name','session')->first()['value'];
         $st = $s.$t;
 
-        $stud = $students->findAll();
+        $stud = $students->where(['class'=>'JS1','class'=>'JS2','class'=>'JS3'])->find();
 
         $data = [
             'studs'=>$stud,
@@ -917,8 +917,6 @@ class Logic extends BaseController
 
     public function newTerm()
     {
-
-
         // create a private function to increment term in respect to session
         $rs = $this->termIncr();
 
@@ -932,6 +930,13 @@ class Logic extends BaseController
         $this->populateBroadsheet();
 
         echo('Done');
+    }
+
+    
+    public function newSheet()
+    {
+        $this->populateBroadsheet();
+        echo('Done Populating Sheet');
     }
 
 

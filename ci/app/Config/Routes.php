@@ -47,6 +47,7 @@ $routes->post('/updvars', 'Logic::updateVars');
 $routes->get('/broadsheet', 'Logic::broadsheet');
 
 $routes->get('/newterm', 'Logic::newTerm');
+$routes->get('/newsheet', 'Logic::newSheet');
 $routes->get('/letter', 'Logic::newsletter');
 
 $routes->get('/attendance/(:any)', 'Logic::attendance/$1');

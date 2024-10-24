@@ -19,7 +19,8 @@
                         <h5>Statistics</h5>
                     </div>
                     <div class="card-body">
-
+                        <a href="<?=base_url('newsheet')?>" class="btn btn-secondary">Generate New Broadsheet for New Term <small>Use Carefully</small></a>
+                        <a href="<?=base_url('newterm')?>" class="btn btn-secondary">Generate New Broadsheet and Increment Term <small>Use Carefully</small></a>
                     </div>
                 </div>
             </div>
