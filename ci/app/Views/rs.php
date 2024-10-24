@@ -19,7 +19,7 @@
     <div class="container sheet padding-5mm">
         <header>
             <img class="logo" src="assets/rs/img/AAIS_Logo_full.png" alt="">
-            <p class="title">Report for Second Term 2022/2023 Session</p>
+            <p class="title">Report for <?=$vars['ReportSheet']?></p>
             <div class="details">
                 <div class="float-left">
                     <p class="name">Name: <b><?=$stud['name']?></b>  </p>

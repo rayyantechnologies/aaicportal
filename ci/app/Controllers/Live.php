@@ -28,12 +28,13 @@ class Live extends BaseController
                 $schOpened = $variables->where('name', 'schoolOpened')->find()[0]['value'];
                 $schResume = $variables->where('name', 'schoolResume')->find()[0]['value'];
                 $schFees = $variables->where('name', 'schoolFees')->find()[0]['value'];
+                $tforReport = $variables->where('name', 'ReportSheet')->find()[0]['value'];
 
                 $stud = $Broadsheet->where('students_id', $adm)->where('sessionterm',$st)->find();
 
                 $data = [
                     'studs'=>$stud,
-                    'vars'=>['nic'=>$noInClass,'schOpened'=>$schOpened,'schResume'=>$schResume,'schFees'=>$schFees]
+                    'vars'=>['nic'=>$noInClass,'schOpened'=>$schOpened,'schResume'=>$schResume,'schFees'=>$schFees, 'ReportSheet'=>$tforReport]
                 ];
 
 
