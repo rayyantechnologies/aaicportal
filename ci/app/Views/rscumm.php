@@ -19,10 +19,6 @@
 
     <?php foreach($studs as $stu): ?>
     <?php 
-        function totalpe($score)
-        {
-        	return ceil((($score)/(3*1200))*100);
-         }
          
          function genRemarkPer($percentage)
         {
@@ -34,39 +30,7 @@
         		return 'Not Promoted';
         	}
         }
-        
-        function ccremark($score)
-        {
-        	switch ($score) {
-        		case $score >= 90 && $score <= 100:
-        			return 'Exc.'; //Distinction
-        			break;
-        		case $score >= 70 && $score <= 89:
-        			return 'V.Gd';
-        			break;
-        		case $score >= 45 && $score <= 69:
-        			return 'Good';
-        			break;
-        		case $score >= 35 && $score <= 44:
-        			return 'Fair';
-        			break;
-        		case $score >= 0 && $score <= 34:
-        			return 'Poor';
-        			break;
-        	}
-        }
-        
-        
-        function cctotal($score)
-        {
-        	$total = (($score)/300)*100;
-        	return ceil($total) ;
-        }
-        
-        function totalper($score)
-        {
-        	return $score.'~<b>'.ceil($score*0.083).'%</b>';
-         }
+
         $stud = $stu['comment'];
         $t1 = $stu[0]['cat_total'] + $stu[0]['project_total'] + $stu[0]['exam_total'];
         $t2 = $stu[1]['cat_total'] + $stu[1]['project_total'] + $stu[1]['exam_total'];
