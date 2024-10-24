@@ -18,18 +18,7 @@
         <?php //dd($studs); ?>
 
     <?php foreach($studs as $stu): ?>
-    <?php 
-         
-         function genRemarkPer($percentage)
-        {
-        	if($percentage > 50){
-        		return 'Promoted';
-        	}elseif ($percentage >= 40) {
-        		return 'Promoted on trial';
-        	}else{
-        		return 'Not Promoted';
-        	}
-        }
+    <?php
 
         $stud = $stu['comment'];
         $t1 = $stu[0]['cat_total'] + $stu[0]['project_total'] + $stu[0]['exam_total'];
