@@ -153,7 +153,7 @@ abstract class BaseModel
      *
      * @var bool
      */
-    protected $protectFields = true;
+    protected $protectFields = false;
 
     /**
      * Database Connection
