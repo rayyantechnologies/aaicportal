@@ -351,7 +351,7 @@ function term($t) {
                     </tr>
                     <tr class="text-center">
                         <td scope="row"><b>Total</b></td>
-                        <td><?=$stud['cat_total']?></td>
+                        <td><?=$stud['cat_total']?> (<?=($stud['cat_total']/240)*100?>%)</td>
                         <td></td>
                         <td><?=$stud['project_total']?></td>
                         <td><?=$stud['exam_total']?></td>
