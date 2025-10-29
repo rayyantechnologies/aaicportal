@@ -36,7 +36,7 @@ class Live extends BaseController
 
                 $data = [
                     'studs'=>$stud,
-                    'vars'=>['nic'=>$noInClass,'schOpened'=>$schOpened,'schResume'=>$schResume,'schFees'=>$schFees]
+                    'vars'=>['nic'=>$noInClass,'schOpened'=>$schOpened,'schResume'=>$schResume,'schFees'=>$schFees, 't'=>$variables->where('name', 'term')->find()[0]['value'], 's'=>$variables->where('name', 'session')->find()[0]['value']]
                 ];
 
 
