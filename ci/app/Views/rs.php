@@ -18,7 +18,7 @@
     <?php foreach($studs as $stud): ?>
     <div class="container sheet padding-5mm">
         <header>
-            <img class="logo" src="assets/rs/img/AAIS_Logo_full.png" alt="">
+            <img class="logo" src="assets/rs/img/AAIS_Logo_full2.png" alt="">
             <p class="title">Report for <?=$vars['ReportSheet']?></p>
             <div class="details">
                 <div class="float-left">
